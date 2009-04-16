@@ -1,0 +1,120 @@
+<!DOCTYPE burnDown SYSTEM "burnDown-schema.dtd">
+<!-- 
+
+Sprints XML URL: 
+==============
+* Sprint 1:
+https://mylly.ixonos.com:8443/jira/secure/IssueNavigator.jspa?view=rss&&fixfor=11044&pid=10230&resolution=-1&sorter/field=priority&sorter/order=DESC&tempMax=500&reset=true&decorator=none
+* Sprint 2:
+https://mylly.ixonos.com:8443/jira/secure/IssueNavigator.jspa?view=rss&&fixfor=11045&pid=10230&resolution=-1&sorter/field=priority&sorter/order=DESC&tempMax=500&reset=true&decorator=none
+* Sprint 3:
+https://mylly.ixonos.com:8443/jira/secure/IssueNavigator.jspa?view=rss&&fixfor=11046&pid=10230&resolution=-1&sorter/field=priority&sorter/order=DESC&tempMax=500&reset=true&decorator=none
+* Sprint 4:
+https://mylly.ixonos.com:8443/jira/secure/IssueNavigator.jspa?view=rss&&fixfor=11047&pid=10230&resolution=-1&sorter/field=priority&sorter/order=DESC&tempMax=250&reset=true&decorator=none
+* Sprint 5:
+https://mylly.ixonos.com:8443/jira/secure/IssueNavigator.jspa?view=rss&&fixfor=11048&pid=10230&sorter/field=issuekey&sorter/order=DESC&tempMax=250&reset=true&decorator=none
+
+XQueries
+=============================
+* to calculate CURRENT estimate:
+fn:sum(/rss/channel[1]/item/timeestimate[1]/@seconds) div 3600
+* to calculate the ORIGINAL estimate:
+fn:sum(/rss/channel[1]/item/timeoriginalestimate[1]/@seconds) div 3600
+
+-->
+<burnDown>
+				<sprint id="Sprint 1">
+								<plan>
+												<day id="0" remaining="1069"/>
+												<day id="25" remaining="0"/>
+								</plan>
+								<real>
+												<day id="0" remaining="1069"/>
+												<day id="2" remaining="954"/>
+												<day id="3" remaining="916"/>
+												<day id="4" remaining="884"/>
+												<day id="5" remaining="857"/>
+												<day id="6" remaining="842"/>
+												<day id="7" remaining="825"/>
+												<day id="8" remaining="742"/>
+												<day id="9" remaining="696"/>
+												<day id="13" remaining="500"/>
+												<day id="14" remaining="441"/>
+												<day id="15" remaining="427"/>
+												<day id="16" remaining="433"/>
+												<day id="17" remaining="382"/>
+												<day id="18" remaining="342"/>
+												<day id="19" remaining="376"/>
+												<day id="20" remaining="328"/>
+												<day id="21" remaining="320"/>
+												<day id="22" remaining="284"/>
+												<day id="23" remaining="247"/>
+												<day id="24" remaining="212"/>
+												<day id="25" remaining="139"/>
+								</real>
+				</sprint>
+				<sprint id="Sprint 2">
+								<plan>
+												<day remaining="615" id="0"/>
+												<day remaining="0" id="15"/>
+								</plan>
+								<real>
+												<day remaining="594" id="0"/>
+												<day remaining="566" id="1"/>
+												<day remaining="558" id="2"/>
+												<day remaining="508" id="3"/>
+												<day remaining="486" id="4"/>
+												<day remaining="464" id="5"/>
+												<day remaining="432" id="6"/>
+												<day remaining="404" id="7"/>
+												<day remaining="358" id="8"/>
+												<day remaining="348" id="9"/>
+												<day remaining="324" id="10"/>
+												<day remaining="287" id="11"/>
+												<day remaining="278" id="12"/>
+												<day remaining="257" id="13"/>
+								</real>
+				</sprint>
+				<sprint id="Sprint 3">
+								<plan>
+												<day remaining="400" id="0"/>
+												<day remaining="0" id="10"/>
+								</plan>
+								<real>
+									<day remaining="400" id="0"></day>
+									<day remaining="320" id="4"></day>
+									<day remaining="290" id="5"></day>
+									<day remaining="259" id="6"></day>
+									<day remaining="244" id="7"></day>
+									<day remaining="213" id="8"></day>
+									<day remaining="199" id="9"></day>
+								</real>
+				</sprint>
+				<sprint id="Sprint 4">
+								<plan>
+												<day remaining="734" id="0"/>
+												<day remaining="0" id="10"/>
+								</plan>
+								<real>
+									<day remaining="734" id="0"></day>
+									<day remaining="468" id="4"></day>
+									<day remaining="444" id="5"></day>
+									<day remaining="430" id="6"/>
+									<day remaining="418" id="7"/>
+									<day remaining="399" id="8"/>
+									<day remaining="356" id="9"/>
+								</real>
+				</sprint>
+				<sprint id="Sprint 5">
+								<plan>
+												<day remaining="484" id="0"/>
+												<day remaining="0" id="10"/>
+								</plan>
+								<real>
+									<day remaining="484" id="0"></day>
+									<day remaining="392" id="3"></day>
+									<day remaining="332" id="4"></day>
+									<day remaining="288" id="5"></day>
+								</real>
+				</sprint>
+</burnDown>

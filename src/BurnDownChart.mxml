@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" height="100%" width="100%"
+		paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+		creationComplete="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.charts.chartClasses.Series;
+			import mx.controls.Alert;
+			
+			[Bindable]
+			private var sprint:XML;
+			
+			[Bindable]
+			private var myData:XML;
+		
+			private function init():void {
+				dataService.send(); 
+			}
+			
+			private function dataFunc(series:Series, item:Object, fieldName:String):Object {
+				var out:Object = null;
+				if (fieldName == "xValue") {
+					out = item.@id;
+				} else if (fieldName == "yValue") {
+					out = item.@remaining;
+				} else {
+					Alert.show(fieldName);
+				}
+				return out;
+			}
+			
+			private function sprintChange():void {
+				sprint = XML(cmbSprint.selectedItem);
+			}
+			
+			private function resultHandler():void {
+				myData = XML(dataService.lastResult);
+				if (cmbSprint.numChildren > 0) {
+					cmbSprint.selectedIndex = myData.children().length() - 1;
+					sprintChange();
+				}
+			}
+			
+			private function faultHandler():void {
+				Alert.show("Data could not be found.");
+			}
+		]]>
+	</mx:Script>
+	
+	<mx:HTTPService id="dataService" 
+				url="burndown/burnDown.xml"
+				method="GET" result="resultHandler()" fault="faultHandler()" resultFormat="xml"/>
+				
+	<mx:Stroke id="blue" color="blue" weight="2"/>
+    <mx:Stroke id="red" color="red" weight="3"/>
+	
+	<mx:SeriesInterpolate id="slideIn" duration="350"/>
+	
+	<mx:Panel width="100%" height="100%" layout="vertical" title="Burndown Chart">
+		<mx:ControlBar>
+			<mx:Label text="Choose:"/>
+			<mx:ComboBox id="cmbSprint" dataProvider="{myData.sprint}" 
+						labelField="@id" change="sprintChange()"/>
+		</mx:ControlBar>	
+			
+		<mx:LineChart id="lineChart" height="100%" width="100%"
+					paddingLeft="15" paddingRight="15" 
+					showDataTips="true">
+	        
+	        <mx:backgroundElements>
+	        	<mx:GridLines direction="both"/>
+	        </mx:backgroundElements>
+	                
+			<mx:horizontalAxis>
+				<mx:LinearAxis minimum="0" title="Time"/>
+			</mx:horizontalAxis>
+			
+			<mx:verticalAxis>
+				<mx:LinearAxis minimum="0" title="Work effort / Story points"/>
+			</mx:verticalAxis>
+	
+			<mx:series>
+				<mx:LineSeries dataProvider="{sprint.plan.day}" 
+							dataFunction="dataFunc" form="curve" displayName="Planned"
+							lineStroke="{blue}" showDataEffect="{slideIn}"/>
+				<mx:LineSeries dataProvider="{sprint.real.day}" 
+							dataFunction="dataFunc" form="curve" displayName="Current" 
+							lineStroke="{red}" showDataEffect="{slideIn}"/>
+			</mx:series>
+			
+		</mx:LineChart>
+
+	</mx:Panel>
+
+</mx:Application>
